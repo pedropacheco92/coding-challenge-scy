@@ -3,7 +3,7 @@ import { notFound } from './notFound';
 
 export function routes(req: IncomingMessage, res: ServerResponse) {
 	if (/^\/tasks\/{0,1}/gm.test(req.url)) {
-		res.write('task'); //write a response
+		res.write('task');
 	} else {
 		notFound(req, res);
 	}
