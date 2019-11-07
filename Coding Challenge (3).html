@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Challenge</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="task-manager-application">Task Manager Application</h1>
+<p>Build a simple application (front and backend) that allows its user to manage a collection of tasks. The functionality expected from this application is:</p>
+<ul>
+<li>Task creation: a task has a title, description, and creation date. All tasks start in the “pending status”.</li>
+<li>Task update: allows the update of a task’s title and/or description.</li>
+<li>Task completion: an user should be able to mark tasks as completed (status goes from pending to completed).</li>
+<li>Task deletion: an user may choose to remove a task from their list at any time.</li>
+</ul>
+<h2 id="frontend">Frontend</h2>
+<p>The frontend of this application should be a SPA that contains a side menu (collapsible into a hamburger menu depending on screen resolution), and two “pages”: pending tasks and completed tasks.</p>
+<h3 id="side-menu">Side Menu</h3>
+<p>A simple menu, should contain two entries, one for each page of the system, this will be used for navigation.</p>
+<h3 id="pending-tasks--page">Pending Tasks  “Page”</h3>
+<p>This page should have a button that when clicked should should allow users to create a new task, and a list of cards, each representing a single task.</p>
+<p>Each card in this page will display the task’s title and description (truncate the description’s presentation if its texts is too large) as well as its creation date. Each card should also have a small footer with buttons to “edit”, “delete” or “complete” its task.</p>
+<p>Ideally we want the task creation and edition being done in a modal, but deleting and completing a task should be done just clicking on the corresponding buttons. As for the task deletion process, a confirmation message should be displayed before it’s finalized.</p>
+<h3 id="completed-tasks-page">Completed Tasks “Page”</h3>
+<p>This page is almost the same as the one above, the difference is that it does not have a “task creation” button and the task cards displayed in here can only be deleted.</p>
+<h2 id="backend">Backend</h2>
+<p>The backend should be a RESTful API that supports the CRUD operations for a task. It should have a persistence layer.</p>
+<h2 id="requirements">Requirements</h2>
+<p>This application <strong>must</strong> be built with Typescript, NodeJS, React and SASS. The project cannot utilize any CSS framework nor any backend framework e.g. express.</p>
+<h2 id="project-delivery">Project Delivery</h2>
+<p>Please deliver the project as a GitHub repository with clear instructions on how to install and run it.</p>
+</div>
+</body>
+
+</html>
