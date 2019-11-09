@@ -1,12 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Menu from '../components/Menu';
 
-const CompletedTasksPage: React.FC = (props: any) => {
+const CompletedTasksPage = (props: any) => {
 
     const tasks = useSelector((state: any) => state.task);
-    console.log(tasks)
 
-	return <div>list</div>;
+	return <div>
+        <Menu />
+    </div>;
 };
 
 export default CompletedTasksPage;

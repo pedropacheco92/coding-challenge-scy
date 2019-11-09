@@ -10,8 +10,8 @@ import store from './redux';
 ReactDOM.render(<Provider store={store}>
     <BrowserRouter>
         <Switch>
+            <Route exact path='/completed' component={CompletedTasksPage} />
             <Route path='/' component={PendingTasksPage} />
-            <Route path='/completed' component={CompletedTasksPage} />
         </Switch>
     </BrowserRouter>
 </Provider>, document.getElementById('root'));

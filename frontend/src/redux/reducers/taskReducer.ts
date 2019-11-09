@@ -1,4 +1,5 @@
 import { Task } from "../../models/Task"
+import { TaskActions } from "../actions/taskActions"
 
 export interface TaskState {
     taskList: Task[]
@@ -30,5 +31,20 @@ const initialState: TaskState = {
 
 export function taskReducer(state = initialState, action: any) {
     console.log(action)
-    return state
+    switch (action) {
+        case TaskActions.LOAD_TASKS:            
+            break
+        case TaskActions.TASK_COMPLETED:            
+            break
+        case TaskActions.TASK_CREATED:            
+            break
+        case TaskActions.TASK_DELETED:            
+            break
+        case TaskActions.TASK_EDITED:            
+            break;
+        case TaskActions.TASK_SAVED:            
+            break;  
+        default:
+            return state
+    }
 }
