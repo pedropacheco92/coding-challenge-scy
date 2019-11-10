@@ -12,10 +12,12 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"mongoose": "^5.7.9",
 		"supertest": "^4.0.2",
 		"typescript": "^3.7.2"
 	},
 	"devDependencies": {
+		"@types/mongoose": "^5.5.30",
 		"@types/node": "^12.12.6",
 		"chai": "^4.2.0",
 		"chai-http": "^4.3.0",
