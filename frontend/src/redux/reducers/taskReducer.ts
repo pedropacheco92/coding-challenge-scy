@@ -2,10 +2,17 @@ import { Task } from "../../models/Task"
 import { TaskActions } from "../actions/taskActions"
 
 export interface TaskState {
-    taskList: Task[]
+    taskList: Task[],
+    popup: {
+        display: boolean,
+        task?: Task
+    }
 }
 
 const initialState: TaskState = {
+    popup: {
+        display: false
+    },
     taskList: [{
         id: '1',
         title: 'Task 1',
@@ -42,19 +49,38 @@ export function taskReducer(state = initialState, action: any) {
             })
             return { ...state, taskList }
         }
-        case TaskActions.TASK_CREATED: {
-            const taskList = state.taskList;
-            taskList.push(action.payload)
-            return { ...state, taskList }
-        }
         case TaskActions.TASK_DELETED: {
             const taskList = state.taskList.filter(t => t.id !== action.payload.id)
             return { ...state, taskList }
         }
+        case TaskActions.TASK_CREATED:
         case TaskActions.TASK_EDITED:
-            break;
-        case TaskActions.TASK_SAVED:
-            break;
+            return { ...state, popup: { display: true, task: { ...action.payload } } }
+        case TaskActions.CANCEL_EDIT_CREATE:
+        case TaskActions.TASK_SAVED: {
+           return { ...state, popup: { display: false } }
+        }
+        case TaskActions.FORM_TASK_TITLE_CHANGE: {
+            const popup = { ...state.popup };
+            popup.task = popup.task ? popup.task : new Task();
+            popup.task.title = action.payload
+
+            return { ...state, popup }
+        }
+        case TaskActions.FORM_TASK_DATE_CHANGE: {
+            const popup = { ...state.popup };
+            popup.task = popup.task ? popup.task : new Task();
+            popup.task.date = action.payload
+
+            return { ...state, popup }
+        }
+        case TaskActions.FORM_TASK_DESCRIPTION_CHANGE: {
+            const popup = { ...state.popup };
+            popup.task = popup.task ? popup.task : new Task();
+            popup.task.description = action.payload
+
+            return { ...state, popup }
+        }
         default:
             return state
     }
