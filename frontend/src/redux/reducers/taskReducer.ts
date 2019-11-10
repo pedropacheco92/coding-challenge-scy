@@ -11,7 +11,7 @@ const initialState: TaskState = {
         title: 'Task 1',
         description: 'Task 1',
         date: new Date(),
-        completed: false
+        completed: true
     },
     {
         id: '2',
@@ -30,12 +30,17 @@ const initialState: TaskState = {
 }
 
 export function taskReducer(state = initialState, action: any) {
-    console.log(action)
-    switch (action) {
+    switch (action.type) {
         case TaskActions.LOAD_TASKS:            
             break
-        case TaskActions.TASK_COMPLETED:            
-            break
+        case TaskActions.TASK_COMPLETED:
+            const taskList = state.taskList.map(t => {
+                if (t.id === action.payload.id) {
+                    return { ...t, completed: !t.completed }
+                }
+                return t
+            })          
+            return { ...state, taskList }
         case TaskActions.TASK_CREATED:            
             break
         case TaskActions.TASK_DELETED:            

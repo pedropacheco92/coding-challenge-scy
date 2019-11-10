@@ -1,4 +1,5 @@
 import { ThunkDispatch } from "redux-thunk";
+import { Task } from "../../models/Task";
 
 export enum TaskActions {
     LOAD_TASKS = 'LOAD_TASKS',
@@ -10,5 +11,9 @@ export enum TaskActions {
 }
 
 export const loadActions = () => (dispatch: ThunkDispatch<any, any, any>, getState: any) => {
-    dispatch({ type:  TaskActions.LOAD_TASKS, payload: ['lalala'] })   
+    dispatch({ type: TaskActions.LOAD_TASKS, payload: ['lalala'] })
+}
+
+export const completeTask = (task: Task) => {
+    return { type: TaskActions.TASK_COMPLETED, payload: task }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Task } from '../models/Task';
-import './TaskPopup.scss';
+import '../sass/TaskPopup.scss';
 
 export interface TaskPopupProps {
 	task: Task

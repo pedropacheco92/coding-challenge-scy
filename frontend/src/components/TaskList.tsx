@@ -1,7 +1,7 @@
 import React from 'react';
 import { Task } from '../models/Task';
 import TaskItem from './TaskItem';
-import './TaskList.scss';
+import '../sass/TaskList.scss';
 
 export interface TaskListProps {
     tasks: Task[]

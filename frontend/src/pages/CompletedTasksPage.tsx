@@ -1,14 +1,12 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Menu from '../components/Menu';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Task } from '../models/Task'
+import BaseTasksPage from './BaseTasksPage'
 
 const CompletedTasksPage = (props: any) => {
+    const tasks = useSelector((state: any) => state.task)
 
-    const tasks = useSelector((state: any) => state.task);
+	return <BaseTasksPage title={'Completed Tasks'} tasks={tasks.taskList.filter((t: Task) => t.completed)} />
+}
 
-	return <div>
-        <Menu />
-    </div>;
-};
-
-export default CompletedTasksPage;
+export default CompletedTasksPage

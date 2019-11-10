@@ -1,18 +1,12 @@
 import React from 'react';
-import TaskList from '../components/TaskList';
 import { useSelector } from 'react-redux';
-import Menu from '../components/Menu';
+import { Task } from '../models/Task';
+import BaseTasksPage from './BaseTasksPage';
 
 const PendingTasksPage = () => {
 	const tasks = useSelector((state: any) => state.task);
 	
-	return (
-		<div>
-			<Menu />
-            <p>Todo Tasks: </p>
-			<TaskList tasks={tasks.taskList}/>
-		</div>
-	);
+	return <BaseTasksPage title={'Todo Tasks'} tasks={tasks.taskList.filter((t: Task) => !t.completed)} />;
 };
 
 export default PendingTasksPage;
