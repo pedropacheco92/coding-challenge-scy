@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Task } from '../models/Task';
-import { completeTask } from '../redux/actions/taskActions';
+import { completeTask, deleteTask } from '../redux/actions/taskActions';
 import '../sass/TaskItem.scss';
 
 export interface TaskItemProps {
@@ -16,7 +16,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
 		<div onClick={() => dispatch(completeTask(task))} className='task_item_check'></div>
 		<div>{task.title}</div>
 		<div className='task_item_edit'></div>
-		<div className='task_item_delete'></div>
+		<div onClick={() => dispatch(deleteTask(task))} className='task_item_delete'></div>
 	</div>;
 };
 

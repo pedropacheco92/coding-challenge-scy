@@ -17,3 +17,7 @@ export const loadActions = () => (dispatch: ThunkDispatch<any, any, any>, getSta
 export const completeTask = (task: Task) => {
     return { type: TaskActions.TASK_COMPLETED, payload: task }
 }
+
+export const deleteTask = (task: Task) => {
+    return { type: TaskActions.TASK_DELETED, payload: task }
+}
