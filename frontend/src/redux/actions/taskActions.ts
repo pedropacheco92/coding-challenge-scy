@@ -36,8 +36,12 @@ export const completeTask = (task: Task) => async (dispatch: ThunkDispatch<any, 
     }
 }
 
-export const deleteTask = (task: Task) => {
-    return { type: TaskActions.TASK_DELETED, payload: task }
+export const deleteTask = (task: Task) => async (dispatch: ThunkDispatch<any, any, any>, getState: any) => {
+    const result = await dao.delete(task)
+
+    if (result.ok) {
+        dispatch({ type: TaskActions.TASK_DELETED, payload: task })
+    }
 }
 
 export const editTask = (task: Task) => {
@@ -45,7 +49,7 @@ export const editTask = (task: Task) => {
 }
 
 export const createTask = () => {
-    return { type: TaskActions.TASK_CREATED }
+    return { type: TaskActions.TASK_CREATED, payload: new Task() }
 }
 
 export const saveTask = () => async (dispatch: ThunkDispatch<any, any, any>, getState: any) => {

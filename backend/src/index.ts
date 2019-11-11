@@ -8,6 +8,6 @@ mongoose.connect('mongodb+srv://taskUser:EsshkbE7Uxu7KySz@mongo-cluster-01-zymjf
 	.then(() => console.log('Mongo Connected'));
 
 //create a server object:
-const server = http.createServer(routes).listen(4000, function () {
+http.createServer(routes).listen(4000, function () {
 	console.log('server start at port 4000');
 });

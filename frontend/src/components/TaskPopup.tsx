@@ -15,9 +15,9 @@ const TaskPopup = ({ task }: TaskPopupProps) => {
 		<div className='task_popup_container'></div>
 		<div className='task_popup_main_container'>
 			<p>{task._id ? 'Edit Task' : 'Create Task'}</p>
-			<input onChange={e => dispatch(taskTitleChange(e.target.value))} value={task.title} type='text' placeholder='title' />
+			<input onChange={e => dispatch(taskTitleChange(e.target.value))} value={task.title} type='text' placeholder='Title' />
 			<input onChange={e => dispatch(taskDateChange(e.target.value))} value={task.date.toISOString().split('T')[0]} id="date" type="date" />
-			<textarea onChange={e => dispatch(taskDescriptionChange(e.target.value))} value={task.description} rows={4} cols={50}></textarea>
+			<textarea onChange={e => dispatch(taskDescriptionChange(e.target.value))} value={task.description} rows={4} cols={50} placeholder='Description'></textarea>
 			<div>
 				<button onClick={() => dispatch(cancelEditCreateTask())} className='primary-button'>Cancel</button>
 				<button onClick={() => dispatch(saveTask())} className='success-button'>Save</button>
