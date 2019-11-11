@@ -25,6 +25,14 @@ const Menu = () => {
 				<Link to="/">Pending</Link>
 				<Link to="/completed">Completed</Link>
 			</div>) : null}
+			<div className='menu-preview'>
+				<Link to="/">
+					<div className='menu-preview-pending'></div>
+				</Link>
+				<Link to="/completed">
+					<div className='menu-preview-completed'></div>
+				</Link>
+			</div>
 		</div>
 	)
 }

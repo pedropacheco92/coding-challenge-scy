@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Menu from '../components/Menu'
 import TaskList from '../components/TaskList'
 import TaskPopup from '../components/TaskPopup'
 import { Task } from '../models/Task'
-import '../sass/BaseTasksPage.scss'
 import { loadActions } from '../redux/actions/taskActions'
+import '../sass/BaseTasksPage.scss'
 
 export interface BaseTasksPageProps {
     title: string;
