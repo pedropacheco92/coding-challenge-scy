@@ -1,5 +1,9 @@
 import { ThunkDispatch } from "redux-thunk";
 import { Task } from "../../models/Task";
+import { TaskDao } from "../../dao/TaskDao";
+import { TaskState } from "../reducers/taskReducer";
+
+const dao = new TaskDao();
 
 export enum TaskActions {
     LOAD_TASKS = 'LOAD_TASKS',
@@ -14,12 +18,22 @@ export enum TaskActions {
     FORM_TASK_DESCRIPTION_CHANGE = 'FORM_TASK_DESCRIPTION_CHANGE'
 }
 
-export const loadActions = () => (dispatch: ThunkDispatch<any, any, any>, getState: any) => {
-    dispatch({ type: TaskActions.LOAD_TASKS, payload: ['lalala'] })
+export const loadActions = () => async (dispatch: ThunkDispatch<any, any, any>, getState: any) => {
+    const result: Task[] = await dao.get()
+    result.map(t => {
+        t.date = new Date(t.date)
+        return t;
+    })
+    dispatch({ type: TaskActions.LOAD_TASKS, payload: result })
 }
 
-export const completeTask = (task: Task) => {
-    return { type: TaskActions.TASK_COMPLETED, payload: task }
+export const completeTask = (task: Task) => async (dispatch: ThunkDispatch<any, any, any>, getState: any) => {
+    task.completed = !task.completed
+    const result = await dao.update(task)
+
+    if (result.ok) {
+        dispatch({ type: TaskActions.TASK_COMPLETED, payload: task })
+    }
 }
 
 export const deleteTask = (task: Task) => {
@@ -34,8 +48,20 @@ export const createTask = () => {
     return { type: TaskActions.TASK_CREATED }
 }
 
-export const saveTask = () => {
-    return { type: TaskActions.TASK_SAVED }
+export const saveTask = () => async (dispatch: ThunkDispatch<any, any, any>, getState: any) => {
+    const task: TaskState = getState().task
+    
+    if (task.popup.task) {
+        if (task.popup.task._id) {
+            await dao.update(task.popup.task)
+            dispatch({ type: TaskActions.TASK_SAVED })
+        } else {
+            await dao.create(task.popup.task)
+            dispatch({ type: TaskActions.TASK_SAVED })
+        }
+    }
+
+    dispatch({ type: TaskActions.CANCEL_EDIT_CREATE })
 }
 
 export const cancelEditCreateTask = () => {

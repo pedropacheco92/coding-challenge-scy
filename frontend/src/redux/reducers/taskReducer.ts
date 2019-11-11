@@ -13,44 +13,24 @@ const initialState: TaskState = {
     popup: {
         display: false
     },
-    taskList: [{
-        id: '1',
-        title: 'Task 1',
-        description: 'Task 1',
-        date: new Date(),
-        completed: true
-    },
-    {
-        id: '2',
-        title: 'Task 2',
-        description: 'Task 2',
-        date: new Date(),
-        completed: false
-    },
-    {
-        id: '3',
-        title: 'Task 3',
-        description: 'Task 3',
-        date: new Date(),
-        completed: false
-    }]
+    taskList: []
 }
 
 export function taskReducer(state = initialState, action: any) {
     switch (action.type) {
         case TaskActions.LOAD_TASKS:
-            break
+            return { ...state, taskList: action.payload }
         case TaskActions.TASK_COMPLETED: {
             const taskList = state.taskList.map(t => {
-                if (t.id === action.payload.id) {
-                    return { ...t, completed: !t.completed }
+                if (t._id === action.payload._id) {
+                    return { ...action.payload }
                 }
                 return t
             })
             return { ...state, taskList }
         }
         case TaskActions.TASK_DELETED: {
-            const taskList = state.taskList.filter(t => t.id !== action.payload.id)
+            const taskList = state.taskList.filter(t => t._id !== action.payload._id)
             return { ...state, taskList }
         }
         case TaskActions.TASK_CREATED:
@@ -58,7 +38,7 @@ export function taskReducer(state = initialState, action: any) {
             return { ...state, popup: { display: true, task: { ...action.payload } } }
         case TaskActions.CANCEL_EDIT_CREATE:
         case TaskActions.TASK_SAVED: {
-           return { ...state, popup: { display: false } }
+            return { ...state, popup: { display: false } }
         }
         case TaskActions.FORM_TASK_TITLE_CHANGE: {
             const popup = { ...state.popup };

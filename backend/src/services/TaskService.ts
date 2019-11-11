@@ -33,8 +33,8 @@ export class TaskService {
 
     async update(req: IncomingMessage, res: ServerResponse) {        
         const body: Task = await parseBody(req)
-        const id = getId(req.url, '/tasks');
-        body.id = id
+        const id = getId(req.url, '/tasks');   
+        body._id = id
         const { ok } = await this.dao.update(body);
         send(res, { ok })    
     }

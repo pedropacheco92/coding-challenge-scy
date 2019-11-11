@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react'
-import { useSelector } from 'react-redux'
+import React, { Fragment, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Menu from '../components/Menu'
 import TaskList from '../components/TaskList'
 import TaskPopup from '../components/TaskPopup'
 import { Task } from '../models/Task'
 import '../sass/BaseTasksPage.scss'
+import { loadActions } from '../redux/actions/taskActions'
 
 export interface BaseTasksPageProps {
     title: string;
@@ -12,7 +13,12 @@ export interface BaseTasksPageProps {
 }
 
 const BaseTasksPage = ({ title, tasks }: BaseTasksPageProps) => {
-    const { popup } = useSelector((state: any) => state.task);
+    const { popup } = useSelector((state: any) => state.task)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(loadActions())
+    }, [popup, dispatch])
 
     return (<Fragment>
         <div className='page-container'>

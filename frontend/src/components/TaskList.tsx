@@ -9,7 +9,7 @@ export interface TaskListProps {
 
 const TaskList = ({ tasks }: TaskListProps) => {
     return <div className='task_list'>
-        {tasks.map((task: Task) => <TaskItem key={task.id} task={task} />)}
+        {tasks.map((task: Task) => <TaskItem key={task._id} task={task} />)}
     </div>;
 };
 

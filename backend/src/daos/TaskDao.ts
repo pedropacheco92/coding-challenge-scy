@@ -16,7 +16,7 @@ export class TaskDao {
     }
 
     public async update(task: Task) {
-        return await TaskModel.updateOne({ _id: task.id }, task)
+        return await TaskModel.updateOne({ _id: task._id }, task)
     }
 
     public async delete(id: string) {
